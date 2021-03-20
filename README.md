@@ -1,0 +1,2 @@
+# mail
+ for traning JS
