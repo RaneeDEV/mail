@@ -28,15 +28,22 @@
           </button>
         </div>
         <div class="col-3 mt-3">
-          Всего сообщений - <span class="length-all" id="lengthAll"></span>
+          Всего сообщений - <span class="length" id="lengthAll"></span>
         </div>
         <div class="col-3 mt-3">
-          Непрочитанное - <span class="length-all" id="lengthUnseen"></span>
+          Непрочитанных - <span class="length" id="lengthUnseen"></span>
         </div>
         <div class="col-5 mt-2 d-flex flex-row-reverse">
-          <form name="searchForm" class="mt-2">
-            <input type="search" class="search-input" placeholder="Search" />
-            <button class="search-btn"><i class="fas fa-search"></i></button>
+          <form name="searchForm" class="mt-2" id="searchForm">
+            <input
+              type="search"
+              name="search"
+              class="search-input"
+              placeholder="Search"
+            />
+            <button class="search-btn" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
           </form>
         </div>
       </div>

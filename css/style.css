@@ -12,6 +12,11 @@
   justify-content: space-evenly;
 }
 
+.length {
+  color: var(--system-color);
+  font-weight: bold;
+}
+
 .sender-wrapper-inf img {
   width: 30%;
   height: auto;
@@ -23,6 +28,7 @@
 .sender-mail {
   color: var(--darkness-color);
   font-weight: bold;
+  text-align: justify;
   font-size: 14px;
   margin: 0 20px;
   overflow: hidden;
@@ -72,7 +78,7 @@
   color: var(--system-color) !important;
 }
 
-.refresh i{
+.refresh i {
   transition: 1s;
   transform: rotate(360deg);
 }

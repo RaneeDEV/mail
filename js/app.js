@@ -5,6 +5,9 @@ const lengthUnseenEl = document.getElementById("lengthUnseen");
 
 const refreshBtnEl = document.getElementById("refreshBtn");
 
+const searchFormEl = document.getElementById("searchForm");
+
+
 // ========== GET DATA JSON START ==========
 getData("/data/senders.json");
 
@@ -24,6 +27,15 @@ async function getData(url) {
 }
 // ========== GET DATA JSON END ==========
 
+// ========== TIME & DATE FORMATTER START ==========
+const dateFormatter = new Intl.DateTimeFormat();
+const timeFormatter = new Intl.DateTimeFormat(undefined, {
+  hour: "2-digit",
+  minute: "2-digit",
+});
+// ========== TIME & DATE FORMATTER END ==========
+
+// ========== REFRESH BTN START ==========
 refreshBtnEl.addEventListener("click", (event) => {
   const refreshEl = event.target.closest(".btn-refresh");
   refreshEl.classList.add("refresh");
@@ -32,6 +44,23 @@ refreshBtnEl.addEventListener("click", (event) => {
   }, 1100);
   getData("/data/senders.json");
 });
+// ========== REFRESH BTN END ==========
+
+// ========== SEARCH START ==========
+searchFormEl.addEventListener('submit', event =>{
+  event.preventDefault()
+  const query = event.target.search.value.toLowerCase().trim().split(' ')
+  const filterFields = ['phone', 'name', 'message']
+  const filteredSenders = SENDERS.filter(sender =>{
+    return query.every(word =>{
+      return !word || filterFields.some(field =>{
+        return `${sender[field]}`.toLowerCase().trim().includes(word)
+      })
+    })
+  })
+  insertSendersElement(senderWrapperEl, filteredSenders);
+})
+// ========== SEARCH END ==========
 
 // {
 //     "id": 1,
@@ -43,6 +72,8 @@ refreshBtnEl.addEventListener("click", (event) => {
 //     "seen": false
 //   },
 
+
+// ========== CREATE & INSERT SENDERS WRAPPER BOX START ==========
 function insertSendersElement(whereEl, senders) {
   lengthAllEl.textContent = SENDERS.length;
   lengthUnseenEl.textContent = SENDERS.filter(
@@ -75,9 +106,10 @@ function createSendersWrap(sender) {
   </div>
   <div class="col-3">
     <div class="sender-answer-times">
-      <p class="sender-time text-muted">${sender.date}</p>
-      <p class="sender-date text-muted">${sender.date}</p>
+      <p class="sender-time text-muted">${timeFormatter.format(sender.date)}</p>
+      <p class="sender-date text-muted">${dateFormatter.format(sender.date)}</p>
     </div>
   </div>
 </div>`;
 }
+// ========== CREATE & INSERT SENDERS WRAPPER BOX END ==========
