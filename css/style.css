@@ -71,3 +71,8 @@
 .sender a:hover {
   color: var(--system-color) !important;
 }
+
+.refresh i{
+  transition: 1s;
+  transform: rotate(360deg);
+}

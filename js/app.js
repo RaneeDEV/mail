@@ -3,6 +3,8 @@ const senderWrapperEl = document.getElementById("senderWrapper");
 const lengthAllEl = document.getElementById("lengthAll");
 const lengthUnseenEl = document.getElementById("lengthUnseen");
 
+const refreshBtnEl = document.getElementById("refreshBtn");
+
 // ========== GET DATA JSON START ==========
 getData("/data/senders.json");
 
@@ -22,6 +24,15 @@ async function getData(url) {
 }
 // ========== GET DATA JSON END ==========
 
+refreshBtnEl.addEventListener("click", (event) => {
+  const refreshEl = event.target.closest(".btn-refresh");
+  refreshEl.classList.add("refresh");
+  setTimeout(() => {
+    refreshEl.classList.remove("refresh");
+  }, 1100);
+  getData("/data/senders.json");
+});
+
 // {
 //     "id": 1,
 //     "phone": "+63 (924) 979-2252",
@@ -33,7 +44,6 @@ async function getData(url) {
 //   },
 
 function insertSendersElement(whereEl, senders) {
-
   lengthAllEl.textContent = SENDERS.length;
   lengthUnseenEl.textContent = SENDERS.filter(
     (messege) => !messege.seen
