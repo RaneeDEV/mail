@@ -33,6 +33,7 @@ async function getData(url) {
 //   },
 
 function insertSendersElement(whereEl, senders) {
+
   lengthAllEl.textContent = SENDERS.length;
   lengthUnseenEl.textContent = SENDERS.filter(
     (messege) => !messege.seen
