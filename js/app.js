@@ -1,5 +1,8 @@
 const senderWrapperEl = document.getElementById("senderWrapper");
 
+const lengthAllEl = document.getElementById("lengthAll");
+const lengthUnseenEl = document.getElementById("lengthUnseen");
+
 // ========== GET DATA JSON START ==========
 getData("/data/senders.json");
 
@@ -30,6 +33,13 @@ async function getData(url) {
 //   },
 
 function insertSendersElement(whereEl, senders) {
+  lengthAllEl.textContent = SENDERS.length;
+  lengthUnseenEl.textContent = SENDERS.filter(
+    (messege) => !messege.seen
+  ).length;
+
+  senders.sort((a, b) => a.seen - b.seen || b.date - a.date);
+
   let html = "";
 
   senders.forEach((sender) => {
