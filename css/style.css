@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 :root {
   --system-color: #0d6efd;
   --darkness-color: rgba(15, 91, 204, 0.8);
@@ -81,4 +85,14 @@
 .refresh i {
   transition: 1s;
   transform: rotate(360deg);
+}
+
+.to-top-link {
+  position: fixed;
+  bottom: 50px;
+  right: 60px;
+  border-radius: 50%;
+  padding: 15px 20px;
+  color: #fff;
+  background-color: var(--system-color);
 }

@@ -1,12 +1,9 @@
 const senderWrapperEl = document.getElementById("senderWrapper");
-
 const lengthAllEl = document.getElementById("lengthAll");
 const lengthUnseenEl = document.getElementById("lengthUnseen");
-
 const refreshBtnEl = document.getElementById("refreshBtn");
-
 const searchFormEl = document.getElementById("searchForm");
-
+const toTopLinkEl = document.getElementById("toTopLink");
 
 // ========== GET DATA JSON START ==========
 getData("/data/senders.json");
@@ -47,20 +44,38 @@ refreshBtnEl.addEventListener("click", (event) => {
 // ========== REFRESH BTN END ==========
 
 // ========== SEARCH START ==========
-searchFormEl.addEventListener('submit', event =>{
-  event.preventDefault()
-  const query = event.target.search.value.toLowerCase().trim().split(' ')
-  const filterFields = ['phone', 'name', 'message']
-  const filteredSenders = SENDERS.filter(sender =>{
-    return query.every(word =>{
-      return !word || filterFields.some(field =>{
-        return `${sender[field]}`.toLowerCase().trim().includes(word)
-      })
-    })
-  })
+searchFormEl.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const query = event.target.search.value.toLowerCase().trim().split(" ");
+  const filterFields = ["phone", "name", "message"];
+  const filteredSenders = SENDERS.filter((sender) => {
+    return query.every((word) => {
+      return (
+        !word ||
+        filterFields.some((field) => {
+          return `${sender[field]}`.toLowerCase().trim().includes(word);
+        })
+      );
+    });
+  });
   insertSendersElement(senderWrapperEl, filteredSenders);
-})
+});
 // ========== SEARCH END ==========
+
+// ========== TO TOP LINK ==========
+let scrollerTime = null;
+
+window.addEventListener("scroll", () => {
+  clearTimeout(scrollerTime);
+  scrollerTime = setTimeout(() => {
+    if (window.pageYOffset > 1000) {
+      toTopLinkEl.classList.remove("d-none");
+    } else if (window.pageYOffset < 1000) {
+      toTopLinkEl.classList.add("d-none");
+    }
+  }, 100);
+});
+// ========== TO TOP LINK ==========
 
 // {
 //     "id": 1,
@@ -71,7 +86,6 @@ searchFormEl.addEventListener('submit', event =>{
 //     "date": 1609595510000,
 //     "seen": false
 //   },
-
 
 // ========== CREATE & INSERT SENDERS WRAPPER BOX START ==========
 function insertSendersElement(whereEl, senders) {
