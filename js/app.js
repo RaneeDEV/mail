@@ -6,7 +6,7 @@ const searchFormEl = document.getElementById("searchForm");
 const toTopLinkEl = document.getElementById("toTopLink");
 
 // ========== GET DATA JSON START ==========
-getData("/data/senders.json");
+getData("https://raneedev.github.io/mail/data/senders.json");
 
 async function getData(url) {
   try {
@@ -38,8 +38,8 @@ refreshBtnEl.addEventListener("click", (event) => {
   refreshEl.classList.add("refresh");
   setTimeout(() => {
     refreshEl.classList.remove("refresh");
+    getData("/data/senders.json");
   }, 1100);
-  getData("/data/senders.json");
 });
 // ========== REFRESH BTN END ==========
 

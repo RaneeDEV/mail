@@ -1,5 +1,5 @@
-html{
-    scroll-behavior: smooth;
+html {
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -95,4 +95,10 @@ html{
   padding: 15px 20px;
   color: #fff;
   background-color: var(--system-color);
+  transition: 0.24s;
+}
+
+.to-top-link:hover {
+  color: #fff;
+  background-color: var(--darkness-color);
 }
