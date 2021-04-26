@@ -6,7 +6,7 @@ const searchFormEl = document.getElementById("searchForm");
 const toTopLinkEl = document.getElementById("toTopLink");
 
 // ========== GET DATA JSON START ==========
-getData("/mail/data/senders.json");
+getData("/data/senders.json");
 
 async function getData(url) {
   try {
