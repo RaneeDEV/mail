@@ -6,7 +6,8 @@ const searchFormEl = document.getElementById("searchForm");
 const toTopLinkEl = document.getElementById("toTopLink");
 
 // ========== GET DATA JSON START ==========
-getData("https://raneedev.github.io/mail/data/senders.json");
+location.href = `${"https://raneedev.github.io/mail/"}`
+getData("/data/senders.json");
 
 async function getData(url) {
   try {
